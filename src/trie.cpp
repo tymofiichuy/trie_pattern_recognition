@@ -46,7 +46,7 @@ int trie_node::get_char_index(char ch){
     }
 }
 
-int trie_node::add_edge(char ch, bool term){
+int trie_node::add_edge(char ch, bool term, int num){
     int index;
     try{
         index = get_char_index(ch);
@@ -61,6 +61,8 @@ int trie_node::add_edge(char ch, bool term){
     else{
         edges[index]->terminator = edges[index]->terminator || term;
     }
+    edges[index]->numbres.push_back(num);
+
     return index;   
 }
 
@@ -76,17 +78,17 @@ trie::~trie(){
     root->delete_node();
 }
 
-void trie::insert_word(string word){
+void trie::insert_word(string word, int num){
     int index;
     string::iterator last = word.end() - 1;
     trie_node* curr = root;
     for(string::iterator iter = word.begin(); iter != word.end(); iter++){
         try{
             if(iter == last){
-                index = curr->add_edge(*iter, true);
+                index = curr->add_edge(*iter, true, num);
             }
             else{
-                index = curr->add_edge(*iter, false);
+                index = curr->add_edge(*iter, false, num);
             }                
         }
         catch(invalid_argument){
@@ -94,6 +96,10 @@ void trie::insert_word(string word){
         }
         curr = curr->edges[index];
     }
+}
+
+void trie_node::print_edges_from(int curr, int& next){
+    
 }
 
 void trie_node::print_word_from_asc(string& prev){

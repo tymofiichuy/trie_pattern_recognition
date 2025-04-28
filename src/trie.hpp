@@ -7,11 +7,16 @@ class trie_node{
         char value;
         trie_node** edges;
         bool terminator;
+        vector<int> numbres;
         int alphabet_size = 4;
         //alphabet: A, C, G, T
+
         static int get_char_index(char ch);
     public:
-        int add_edge(char ch, bool term);
+        int add_edge(char ch, bool term, int num);
+
+        void print_edges_from(int curr, int& next);
+
         void print_word_from_asc(std::string& prev);
         void print_word_from_desc(std::string& prev);
     
@@ -29,7 +34,7 @@ class trie{
     private:
         trie_node* root;
     public:
-        void insert_word(std::string word);
+        void insert_word(std::string word, int num);
         void print_all_words(std::string order = "NULL");
         void print_tree();
     

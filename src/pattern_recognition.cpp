@@ -10,7 +10,7 @@ void pattern_recognition::read_words(ifstream& in_file){
     size = stoi(word);
 
     while(getline(in_file, word) && iter<size){
-        suffixes.insert_word(word);
+        suffixes.insert_word(word, iter);
         iter++;
     }
 }
@@ -23,6 +23,6 @@ void pattern_recognition::read_line(ifstream& in_file){
     len = line.length();
 
     for(int i = 0; i < len; i++){
-        suffixes.insert_word(line.substr(i));
+        suffixes.insert_word(line.substr(i), i);
     }
 }
