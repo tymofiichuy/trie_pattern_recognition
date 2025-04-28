@@ -13,4 +13,4 @@ set(SOURCES
     ${SOURCE_DIR}/trie.cpp
 )
 
-include_directories(${SOURCE_DIR} ${BITSTREAM_DIR})
+include_directories(${SOURCE_DIR})

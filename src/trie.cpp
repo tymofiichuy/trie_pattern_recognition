@@ -1,5 +1,7 @@
 #include "trie.hpp"
 
+using namespace std;
+
 trie_node::trie_node(char ch, bool term):terminator(term),value(ch){
     edges = new trie_node*[alphabet_size]();
 }

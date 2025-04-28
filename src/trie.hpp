@@ -2,8 +2,6 @@
 #include<vector>
 #include<string>
 
-using namespace std;
-
 class trie_node{
     private:
         char value;
@@ -14,8 +12,8 @@ class trie_node{
         static int get_char_index(char ch);
     public:
         int add_edge(char ch, bool term);
-        void print_word_from_asc(string& prev);
-        void print_word_from_desc(string& prev);
+        void print_word_from_asc(std::string& prev);
+        void print_word_from_desc(std::string& prev);
     
         void print_tree_from(int width, bool silent);
         void delete_node();
@@ -31,13 +29,13 @@ class trie{
     private:
         trie_node* root;
     public:
-        void insert_word(string word);
-        void print_all_words(string order = "NULL");
+        void insert_word(std::string word);
+        void print_all_words(std::string order = "NULL");
         void print_tree();
     
         trie();
         trie(const trie& in);
         ~trie();
-    
-        friend class dictionary;
-    };
+
+        friend class pattern_recognition;
+};
