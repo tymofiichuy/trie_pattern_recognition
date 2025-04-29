@@ -2,6 +2,7 @@
 
 #include "trie.hpp"
 #include<random>
+#include<set>
 
 class pattern_recognition{
     private:

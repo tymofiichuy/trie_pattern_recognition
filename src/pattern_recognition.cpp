@@ -16,7 +16,7 @@ void pattern_recognition::read_words(ifstream& in_file){
 }
 
 void pattern_recognition::read_line(ifstream& in_file){
-    string line, word;
+    string line;
     int len;
 
     getline(in_file, line);
@@ -38,6 +38,41 @@ void pattern_recognition::write_trie(string out_file){
     suffixes.print_edges(out);
     out.close();
 }
+
+void pattern_recognition::find_patterns(std::ifstream& patterns, std::ofstream& out_file){
+    string line;
+    int number;
+    bool flag;
+    set<int> indices;
+    trie_node* temp;
+
+    getline(patterns, line);
+    number = stoi(line);
+
+    for(int i = 0; i < number; i++){
+        getline(patterns, line);
+        temp = suffixes.root;
+        flag = true;
+        for(string::iterator it = line.begin(); it != line.end(); ++it){
+            if(temp->edges[trie_node::get_char_index(*it)]){
+                temp = temp->edges[trie_node::get_char_index(*it)];
+            }
+            else{
+                flag = false;
+                break;
+            }
+        }
+        if(flag){
+            for(vector<int>::iterator it = temp->numbers.begin(); it != temp->numbers.end(); it++){
+                indices.insert(*it);
+                //out_file << *it << " ";
+            }
+        }
+    }
+    for(set<int>::iterator it = indices.begin(); it != indices.end(); it++){
+        out_file << *it << " ";
+    }
+};
 
 void pattern_recognition::generate_patterns(string out_file){
     ofstream out(out_file);
