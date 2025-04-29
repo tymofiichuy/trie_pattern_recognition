@@ -46,6 +46,21 @@ int trie_node::get_char_index(char ch){
     }
 }
 
+char trie_node::get_char_from_index(int ind){
+    switch(ind){
+        case 0:
+            return 'A';
+        case 1:
+            return 'C';
+        case 2:
+            return 'G';
+        case 3:
+            return 'T';
+        default:
+            throw invalid_argument("Invalid index: " + to_string(ind));
+    }
+}
+
 int trie_node::add_edge(char ch, bool term, int num){
     int index;
     try{
@@ -98,8 +113,15 @@ void trie::insert_word(string word, int num){
     }
 }
 
-void trie_node::print_edges_from(int curr, int& next){
-    
+//!!!
+void trie_node::print_edges_from(int curr, int& next, std::ofstream& out){
+    for(int i = 0; i < alphabet_size; i++){
+        if(edges[i]){
+            next++;
+            out <<curr<<"->"<<next<<":"<<get_char_from_index(i)<<"\n";
+            edges[i]->print_edges_from(next, next, out);            
+        }
+    }
 }
 
 void trie_node::print_word_from_asc(string& prev){
@@ -180,4 +202,9 @@ void trie::print_all_words(string order){
 void trie::print_tree(){
     cout << "#\n";
     root->print_tree_from(-2, true);
+}
+
+void trie::print_edges(ofstream& out_file){
+    int next = 0;
+    root->print_edges_from(next, next, out_file);
 }

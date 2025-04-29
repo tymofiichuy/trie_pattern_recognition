@@ -11,6 +11,9 @@ set(MAIN_DIR ${CMAKE_SOURCE_DIR}/main)
 
 set(SOURCES
     ${SOURCE_DIR}/trie.cpp
+    ${SOURCE_DIR}/pattern_recognition.cpp
 )
 
 include_directories(${SOURCE_DIR})
+
+add_executable(demonstration ${MAIN_DIR}/trie_demonstration.cpp ${SOURCES})

@@ -1,21 +1,25 @@
+#pragma once
+
 #include<iostream>
 #include<vector>
 #include<string>
+#include<fstream>
 
 class trie_node{
     private:
         char value;
         trie_node** edges;
         bool terminator;
-        vector<int> numbres;
+        std::vector<int> numbres;
         int alphabet_size = 4;
         //alphabet: A, C, G, T
 
         static int get_char_index(char ch);
+        static char get_char_from_index(int ind);
     public:
         int add_edge(char ch, bool term, int num);
 
-        void print_edges_from(int curr, int& next);
+        void print_edges_from(int curr, int& next, std::ofstream& out);
 
         void print_word_from_asc(std::string& prev);
         void print_word_from_desc(std::string& prev);
@@ -28,6 +32,7 @@ class trie_node{
         ~trie_node();
     
         friend class trie;
+        friend class pattern_recognition;
 };
 
 class trie{
@@ -36,6 +41,8 @@ class trie{
     public:
         void insert_word(std::string word, int num);
         void print_all_words(std::string order = "NULL");
+
+        void print_edges(std::ofstream& out_file);
         void print_tree();
     
         trie();
