@@ -8,7 +8,6 @@ set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(MAIN_DIR ${CMAKE_SOURCE_DIR}/main)
 
-
 set(SOURCES
     ${SOURCE_DIR}/trie.cpp
     ${SOURCE_DIR}/pattern_recognition.cpp
