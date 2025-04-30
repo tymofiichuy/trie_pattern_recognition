@@ -76,7 +76,7 @@ int trie_node::add_edge(char ch, bool term, int num){
     else{
         edges[index]->terminator = edges[index]->terminator || term;
     }
-    edges[index]->numbres.push_back(num);
+    edges[index]->numbers.push_back(num);
 
     return index;   
 }

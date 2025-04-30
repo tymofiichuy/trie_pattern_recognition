@@ -17,3 +17,4 @@ set(SOURCES
 include_directories(${SOURCE_DIR})
 
 add_executable(demonstration ${MAIN_DIR}/trie_demonstration.cpp ${SOURCES})
+add_executable(pattern_recognition ${MAIN_DIR}/main_driver.cpp ${SOURCES})
