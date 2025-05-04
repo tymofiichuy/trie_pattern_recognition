@@ -10,7 +10,7 @@ class trie_node{
         char value;
         trie_node** edges;
         bool terminator;
-        std::vector<int> numbers;
+        std::vector<uint16_t> numbers;
         int alphabet_size = 4;
         //alphabet: A, C, G, T
 

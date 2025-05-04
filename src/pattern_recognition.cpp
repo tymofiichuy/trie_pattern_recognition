@@ -63,7 +63,7 @@ void pattern_recognition::find_patterns(std::ifstream& patterns, std::ofstream& 
             }
         }
         if(flag){
-            for(vector<int>::iterator it = temp->numbers.begin(); it != temp->numbers.end(); it++){
+            for(vector<uint16_t>::iterator it = temp->numbers.begin(); it != temp->numbers.end(); it++){
                 indices.insert(*it);
                 //out_file << *it << " ";
             }
