@@ -3,9 +3,22 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char *argv[]){
+    if(argc > 2){
+        cerr << "Unsupported signature";
+        return 1;
+    }
+
     pattern_recognition ptr;
-    ptr.generate_input("input.dat");
+    if(argc == 2){
+        if(strcmp(argv[1], "--gen") == 0){
+            ptr.generate_input("input.dat");
+        }
+        else{
+            cerr << "Unsupported parameter";
+            return 1;
+        }
+    }
 
     chrono::milliseconds trie_generation(0);
     chrono::milliseconds recognition(0);
